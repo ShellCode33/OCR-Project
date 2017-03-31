@@ -2,7 +2,6 @@ package fr.iut.ocr;
 
 import ij.ImagePlus;
 
-import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -10,10 +9,19 @@ import java.util.ArrayList;
  */
 public class ImageOCR {
     private ImagePlus img;
-    private String expected_value;
+    private char expected_value;
     private ArrayList<Specification> specifications;
 
-    public ImageOCR(String filename, String expected_value) {
+    public ImageOCR(String filename, char expected_value) {
         img = new ImagePlus(filename);
+        this.expected_value = expected_value;
+    }
+
+    public char getExpectedValue() {
+        return expected_value;
+    }
+
+    public char getFoundValue() {
+        return (char)((int)'a' + (int)(Math.random() * 26));
     }
 }

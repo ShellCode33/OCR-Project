@@ -1,11 +1,11 @@
 package fr.iut.tests;
 
 import fr.iut.ocr.CalculMath;
-import org.junit.*;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Created by theo on 31/03/17.

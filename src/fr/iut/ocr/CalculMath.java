@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class CalculMath {
 
-    public static double distEucli(ArrayList<Double> vect1, ArrayList<Double> vect2){
+    private static double distEucli(ArrayList<Double> vect1, ArrayList<Double> vect2){
         double dist = 0;
 
         if(vect1.size() == vect2.size()){
@@ -23,7 +23,7 @@ public class CalculMath {
         return dist;
     }
 
-    public static int PPV(ArrayList<Double> vect, ArrayList<ArrayList<Double>> tabVect, int except){ // TODO : maybe mettre except
+    public static int PPV(ArrayList<Double> vect, ArrayList<ArrayList<Double>> tabVect, int except){
         int index = -1;
         double dist = 10;
 
