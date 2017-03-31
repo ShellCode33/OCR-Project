@@ -1,19 +1,14 @@
 package fr.iut.ocr;
 
-import ij.ImagePlus;
-import ij.plugin.filter.PlugInFilter;
-import ij.process.ImageProcessor;
+import ij.plugin.PlugIn;
 
 /**
  * Created by shellcode on 3/31/17.
  */
-public class PluginOCR implements PlugInFilter {
+public class PluginOCR implements PlugIn {
 
-    public int setup(String s, ImagePlus imagePlus) {
-        return 0;
-    }
-
-    public void run(ImageProcessor imageProcessor) {
-
+    @Override
+    public void run(String s) {
+        System.out.println("RUNNING");
     }
 }
