@@ -1,5 +1,6 @@
 #!/bin/bash
 cd "$(dirname "$0")"
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 
 if [ ! -d out ]; then
   mkdir out;
@@ -19,4 +20,4 @@ jar cvfM ../jar_ocrplugin.jar * ../plugins.config
 cp ../jar_ocrplugin.jar $HOME/.imagej/plugins/
 
 #run
-DEBUG=1 imagej
+imagej
