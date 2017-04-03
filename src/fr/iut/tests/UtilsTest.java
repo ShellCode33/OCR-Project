@@ -1,6 +1,6 @@
 package fr.iut.tests;
 
-import fr.iut.ocr.CalculMath;
+import fr.iut.ocr.Utils;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * Created by theo on 31/03/17.
  */
-public class CalculMathTest {
+public class UtilsTest {
 
     @Test
     public void testPPV(){
@@ -27,6 +27,6 @@ public class CalculMathTest {
         myList.add(tab2);
         myList.add(tab3);
 
-        assertEquals(CalculMath.PPV(tab0, myList, -1), 1);
+        assertEquals(Utils.PPV(tab0, myList, -1), 1);
     }
 }

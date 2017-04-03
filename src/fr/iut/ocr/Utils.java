@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Created by theo on 31/03/17.
  */
-public class CalculMath {
+public class Utils {
 
     private static double distEucli(ArrayList<Double> vect1, ArrayList<Double> vect2){
         double dist = 0;
@@ -25,13 +25,15 @@ public class CalculMath {
 
     public static int PPV(ArrayList<Double> vect, ArrayList<ArrayList<Double>> tabVect, int except){
         int index = -1;
-        double dist = 10;
+        double dist = Double.MAX_VALUE;
 
         for (int i = 0; i < tabVect.size(); i++) {
-            if(i != except){
-                if(distEucli(vect, tabVect.get(i)) < dist){
+            if(i != except) {
+                double tmp_dist = distEucli(vect, tabVect.get(i));
+
+                if (tmp_dist < dist) {
                     index = i;
-                    dist = distEucli(vect, tabVect.get(i));
+                    dist = tmp_dist;
                 }
             }
         }
