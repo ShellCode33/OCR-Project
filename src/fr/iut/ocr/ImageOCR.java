@@ -20,12 +20,22 @@ public class ImageOCR {
         new ImageConverter(img).convertToGray8();
         this.expected_value = expected_value;
         specifications = new ArrayList<>();
+        resize(20, 20);
     }
 
     public ImageOCR(ImagePlus imagePlus) {
         img = imagePlus;
         new ImageConverter(img).convertToGray8();
         specifications = new ArrayList<>();
+        resize(20, 20);
+    }
+
+    private void resize(int larg , int haut)
+    {
+        ImageProcessor ip2 = img.getProcessor();
+        ip2.setInterpolate(true);
+        ip2 = ip2.resize(larg, haut);
+        img.setProcessor (null, ip2) ;
     }
 
     public char getExpectedValue() {
