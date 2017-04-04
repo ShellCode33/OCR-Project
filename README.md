@@ -12,14 +12,16 @@ Nous souhaitons obtenir une reconnaissance des caractères optimale, la matrice 
 ## Chaine de traitement
 * Redimensionnement des images en 20x20
 * Niveaux moyens de gris
+* Profil horizontal et vertical
 ## Résultats
 Matrice de confusion avec pour seule caractéristique les niveaux de gris :
 
-Mon Apr 03 13:16:50 CEST 2017
+![result1](https://github.com/ShellCode33/OCR-Project/raw/master/screenshots/result1.png)
 
-![result1](https://github.com/ShellCode33/OCR-Project/raw/master/screenshots/matrix_grey_levels.png)
+* Taux de réussite : 24%
 
-* Success rate : 16.0%
-* En redimensionant toutes les images en 20x20, le taux de réussite tombe à 14%
+La reconnaissance commence à être interessante lorsque l'on analyse le profil horizontal et vertical des images. En effet le taux de réussite augmente drastiquement :
 
- 
+![result2](https://github.com/ShellCode33/OCR-Project/raw/master/screenshots/result2.png)
+
+* Taux de réussite : 79%
