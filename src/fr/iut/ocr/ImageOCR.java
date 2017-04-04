@@ -30,8 +30,7 @@ public class ImageOCR {
         resize(20, 20);
     }
 
-    private void resize(int larg , int haut)
-    {
+    private void resize(int larg , int haut) {
         ImageProcessor ip2 = img.getProcessor();
         ip2.setInterpolate(true);
         ip2 = ip2.resize(larg, haut);
@@ -69,4 +68,29 @@ public class ImageOCR {
 
         return sum;
     }
+
+    public void setFeatureProfilH(){
+        ImageProcessor ip = img.getProcessor();
+        byte[] pixels = (byte[]) ip.getPixels();
+        int height = ip.getHeight();
+        int width = ip.getWidth();
+
+        int count[] = new int[width];
+
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                //System.out.println(pixels[j * width + i]);
+                if(pixels[j * width + i ] > 0) // c'est comme ca qu'on test qu'un pixel est noir ?
+                    count[i]++;
+            }
+        }
+
+        for (int i = 0; i < count.length; i++) {
+            specifications.add((double) count[i]);
+        }
+
+    }
+
+
+
 }

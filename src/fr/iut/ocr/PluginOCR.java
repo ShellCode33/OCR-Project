@@ -32,7 +32,6 @@ public class PluginOCR implements PlugIn {
         }
 
         else if(s.equals("confuse_matrix")) {
-
             if(references.size() == 0) {
                 System.out.println("Load references before");
                 return;
@@ -58,6 +57,7 @@ public class PluginOCR implements PlugIn {
 
             imageToAnalyse = new ImageOCR(imp);
             imageToAnalyse.addGreyLevelsSpec();
+            imageToAnalyse.setFeatureProfilH();
         }
     }
 
@@ -93,6 +93,7 @@ public class PluginOCR implements PlugIn {
                 System.out.println("Processing : " + filePath);
                 ImageOCR newImg = new ImageOCR(filePath, files[i].getName().charAt(0));
                 newImg.addGreyLevelsSpec();
+                newImg.setFeatureProfilH();
                 references.add(newImg);
             }
 
