@@ -18,6 +18,7 @@ public class Utils {
         }
         else{
             System.out.println("Not the same size.");
+            dist = Double.MAX_VALUE;
         }
 
         return dist;
