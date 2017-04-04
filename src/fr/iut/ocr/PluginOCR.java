@@ -58,6 +58,7 @@ public class PluginOCR implements PlugIn {
             imageToAnalyse = new ImageOCR(imp);
             imageToAnalyse.addGreyLevelsSpec();
             imageToAnalyse.setFeatureProfilH();
+            imageToAnalyse.setFeatureProfilV();
         }
     }
 
@@ -94,6 +95,7 @@ public class PluginOCR implements PlugIn {
                 ImageOCR newImg = new ImageOCR(filePath, files[i].getName().charAt(0));
                 newImg.addGreyLevelsSpec();
                 newImg.setFeatureProfilH();
+                newImg.setFeatureProfilV();
                 references.add(newImg);
             }
 

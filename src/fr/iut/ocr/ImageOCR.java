@@ -79,8 +79,7 @@ public class ImageOCR {
 
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
-                //System.out.println(pixels[j * width + i]);
-                if(pixels[j * width + i ] > 0) // c'est comme ca qu'on test qu'un pixel est noir ?
+                if(pixels[j * width + i] > 0) // c'est comme ca qu'on test qu'un pixel est noir ?
                     count[i]++;
             }
         }
@@ -91,6 +90,24 @@ public class ImageOCR {
 
     }
 
+    public void setFeatureProfilV(){
+        ImageProcessor ip = img.getProcessor();
+        byte[] pixels = (byte[]) ip.getPixels();
+        int height = ip.getHeight();
+        int width = ip.getWidth();
 
+        int count[] = new int[height];
+
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                if(pixels[i * width + j] > 0) // c'est comme ca qu'on test qu'un pixel est noir ?
+                    count[i]++;
+            }
+        }
+
+        for (int i = 0; i < count.length; i++) {
+            specifications.add((double) count[i]);
+        }
+    }
 
 }
