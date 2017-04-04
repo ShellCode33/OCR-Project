@@ -55,9 +55,10 @@ public class PluginOCR implements PlugIn {
             System.out.println("Analyzing " + imp.getTitle());
 
             imageToAnalyse = new ImageOCR(imp);
-            imageToAnalyse.addGreyLevelsSpec();
-            imageToAnalyse.addProfilSpec();
-            imageToAnalyse.addIsoSpec();
+            imageToAnalyse.addSpecification(new GreyLevelsSpec(imp.getProcessor()));
+            imageToAnalyse.addSpecification(new ProfilHSpec(imp.getProcessor()));
+            imageToAnalyse.addSpecification(new ProfilVSpec(imp.getProcessor()));
+            imageToAnalyse.addSpecification(new IsoSpec(imp.getProcessor()));
         }
     }
 
@@ -67,7 +68,7 @@ public class PluginOCR implements PlugIn {
         int confusion[][] = new int[count][count];
 
         for(int i = 0; i < references.size(); i++) {
-            ArrayList<ArrayList<Double>> specsReferences = new ArrayList<>();
+            ArrayList<ArrayList<Specification>> specsReferences = new ArrayList<>();
 
             for (ImageOCR imageOCR : references) {
                 specsReferences.add(imageOCR.getSpecifications());
@@ -92,9 +93,10 @@ public class PluginOCR implements PlugIn {
                 String filePath = files[i].getAbsolutePath();
                 System.out.println("Processing : " + filePath);
                 ImageOCR newImg = new ImageOCR(filePath, files[i].getName().charAt(0));
-                newImg.addGreyLevelsSpec();
-                newImg.addProfilSpec();
-                newImg.addIsoSpec();
+                newImg.addSpecification(new GreyLevelsSpec(newImg.getProcessor()));
+                newImg.addSpecification(new ProfilHSpec(newImg.getProcessor()));
+                newImg.addSpecification(new ProfilVSpec(newImg.getProcessor()));
+                newImg.addSpecification(new IsoSpec(newImg.getProcessor()));
                 references.add(newImg);
             }
 

@@ -7,12 +7,12 @@ import java.util.ArrayList;
  */
 public class Utils {
 
-    private static double distEucli(ArrayList<Double> vect1, ArrayList<Double> vect2){
+    private static double distEucli(ArrayList<Specification> vect1, ArrayList<Specification> vect2){
         double dist = 0;
 
         if(vect1.size() == vect2.size()){
             for (int i = 0; i < vect1.size(); i++) {
-                dist += Math.pow(vect1.get(i) - vect2.get(i), 2);
+                dist += Math.pow(vect1.get(i).compareTo(vect2.get(i)), 2);
             }
             dist = Math.sqrt(dist);
         }
@@ -24,7 +24,7 @@ public class Utils {
         return dist;
     }
 
-    public static int PPV(ArrayList<Double> vect, ArrayList<ArrayList<Double>> tabVect, int except){
+    public static int PPV(ArrayList<Specification> vect, ArrayList<ArrayList<Specification>> tabVect, int except){
         int index = -1;
         double dist = Double.MAX_VALUE;
 
