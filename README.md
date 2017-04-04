@@ -5,10 +5,11 @@ Projet IUT Informatique de Bordeaux 2016-2017
 ## Quels sont les enjeux ?
 Le mot OCR (en anglais : optical character recognition) signifie reconnaissance optique de caractères ou reconnaissance de texte, une technologie qui vous permet de convertir différents types de documents tels que les documents papiers scannés, les fichiers PDF ou les photos numériques en fichiers modifiables et interrogeables.
 
-## Qu'est ce qu'on attend ?
+Dans notre cas, nous allons tenter d'analyser des images de chiffres et d'en retrouver la valeur.
+
+## Quels sont les résultats attendus ?
 Nous souhaitons obtenir une reconnaissance des caractères optimale, la matrice de confusion est là pour vérifier la précision de notre algorithme.
 
-## Bases, bien expliquer, quelles formats, les difficultés
 ## Chaine de traitement
 * Redimensionnement des images en 20x20
 * Niveaux moyens de gris
