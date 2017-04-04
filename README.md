@@ -25,4 +25,10 @@ La reconnaissance commence à être interessante lorsque l'on analyse le profil 
 
 ![result2](https://github.com/ShellCode33/OCR-Project/raw/master/screenshots/result2.png)
 
-* Taux de réussite : 79%
+* Taux de réussite : 72%
+
+Après avoir appliqué un algorithme comparant les rapports isopérimetriques, il semblera que celui-ci ne change pas le taux de réussite qui est maintenant à 72%.
+
+Ajout du zoning, celui-ci permet... TODO
+
+Amélioration de la classification en faisant une moyenne entres les différentes références.
