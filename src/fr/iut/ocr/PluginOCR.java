@@ -2,7 +2,6 @@ package fr.iut.ocr;
 
 import ij.ImagePlus;
 import ij.WindowManager;
-import ij.gui.GenericDialog;
 import ij.io.DirectoryChooser;
 import ij.measure.ResultsTable;
 import ij.plugin.PlugIn;
@@ -37,7 +36,7 @@ public class PluginOCR implements PlugIn {
                 return;
             }
 
-            logOCR("/tmp/logs");
+            logOCR();
         }
 
         else if(s.equals("custom_image")) {
@@ -57,8 +56,7 @@ public class PluginOCR implements PlugIn {
 
             imageToAnalyse = new ImageOCR(imp);
             imageToAnalyse.addGreyLevelsSpec();
-            imageToAnalyse.setFeatureProfilH();
-            imageToAnalyse.setFeatureProfilV();
+            imageToAnalyse.addProfilSpec();
         }
     }
 
@@ -94,8 +92,7 @@ public class PluginOCR implements PlugIn {
                 System.out.println("Processing : " + filePath);
                 ImageOCR newImg = new ImageOCR(filePath, files[i].getName().charAt(0));
                 newImg.addGreyLevelsSpec();
-                newImg.setFeatureProfilH();
-                newImg.setFeatureProfilV();
+                newImg.addProfilSpec();
                 references.add(newImg);
             }
 
@@ -103,10 +100,10 @@ public class PluginOCR implements PlugIn {
         }
     }
 
-    public void logOCR(String filename) {
+    public void logOCR() {
 
         try{
-            PrintWriter writer = new PrintWriter(filename, "UTF-8");
+            PrintWriter writer = new PrintWriter("/tmp/logs", "UTF-8");
             writer.println(new Date() + "\n");
 
             for(int i = 0; i < 10; i++)
@@ -131,12 +128,9 @@ public class PluginOCR implements PlugIn {
 
             writer.println("----------------------------------------------------------------------------------\n");
 
-            double sum = 0;
-            for(int i = 0; i < count; i++) {
-                sum += confusion[i][i];
-            }
 
-            writer.println("Success rate : " + (sum / references.size() * 100) + "%");
+
+            writer.println("Success rate : " + getSuccessRate(confusion) + "%");
 
             writer.close();
         } catch (IOException e) {
@@ -146,13 +140,37 @@ public class PluginOCR implements PlugIn {
 
     private void displayConfuseMatrix(int[][] confusion) {
         ResultsTable resultsTable = new ResultsTable();
+        resultsTable.showRowNumbers(false);
 
         for(int i = 0; i < confusion.length; i++) {
             resultsTable.incrementCounter();
+            resultsTable.addValue("label", i);
+
             for(int j = 0; j < confusion[i].length; j++) {
                 resultsTable.addValue(Integer.toString(j), confusion[i][j]);
             }
+
+            resultsTable.addValue("success", "" + (int)((double)confusion[i][i] / confusion.length * 100) + "%");
         }
+
+        resultsTable.incrementCounter();
+
+        resultsTable.addValue("label", "");
+        for(int i = 0; i < confusion.length-1; i++)
+            resultsTable.addValue(Integer.toString(i), "");
+
+        resultsTable.addValue(Integer.toString(confusion.length-1), "Moy:");
+        resultsTable.addValue("success", Integer.toString(getSuccessRate(confusion)) + "%");
         resultsTable.show("Confuse Matrix");
+    }
+
+    private int getSuccessRate(int [][] confusion) {
+        double sum = 0;
+
+        for(int i = 0; i < confusion.length; i++) {
+            sum += confusion[i][i];
+        }
+
+        return (int)(sum / references.size() * 100);
     }
 }

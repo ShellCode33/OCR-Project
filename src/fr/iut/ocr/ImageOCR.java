@@ -12,51 +12,48 @@ import java.util.ArrayList;
  */
 public class ImageOCR {
     private ImagePlus img;
+    private ImageProcessor processor;
     private char expected_value;
     private ArrayList<Double> specifications;
 
     public ImageOCR(String filename, char expected_value) {
         img = new ImagePlus(filename);
-        new ImageConverter(img).convertToGray8();
         this.expected_value = expected_value;
-        specifications = new ArrayList<>();
-        resize(20, 20);
+        init();
     }
 
     public ImageOCR(ImagePlus imagePlus) {
         img = imagePlus;
+        init();
+    }
+
+    private void init() {
         new ImageConverter(img).convertToGray8();
+        processor = img.getProcessor();
         specifications = new ArrayList<>();
         resize(20, 20);
     }
 
-    private void resize(int larg , int haut) {
-        ImageProcessor ip2 = img.getProcessor();
-        ip2.setInterpolate(true);
-        ip2 = ip2.resize(larg, haut);
-        img.setProcessor (null, ip2) ;
+    private void resize(int width , int height) {
+        processor.setInterpolate(true);
+        processor = processor.resize(width, height);
+        img.setProcessor (null, processor) ;
     }
 
     public char getExpectedValue() {
         return expected_value;
     }
 
-    public void addGreyLevelsSpec() {
-        specifications.clear();
-        specifications.add(getGreyAverage());
-    }
-
     public ArrayList<Double> getSpecifications() {
         return specifications;
     }
 
-    public double getGreyAverage() {
-        ImageProcessor ip = img.getProcessor();
-        byte[] pixels = (byte[]) ip.getPixels();
-        int height = ip.getHeight();
-        int width = ip.getWidth();
+    public void addGreyLevelsSpec() {
+        byte[] pixels = (byte[]) processor.getPixels();
+        int height = processor.getHeight();
+        int width = processor.getWidth();
 
-        int sum = 0;
+        double sum = 0;
 
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
@@ -66,20 +63,20 @@ public class ImageOCR {
 
         sum = sum / (width*height);
 
-        return sum;
+        specifications.add(sum);
     }
 
-    public void setFeatureProfilH(){
-        ImageProcessor ip = img.getProcessor();
-        byte[] pixels = (byte[]) ip.getPixels();
-        int height = ip.getHeight();
-        int width = ip.getWidth();
+    public void addProfilSpec() {
+        byte[] pixels = (byte[]) processor.getPixels();
+        int height = processor.getHeight();
+        int width = processor.getWidth();
 
         int count[] = new int[width];
 
+        //profil vertical
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
-                if(pixels[j * width + i] > 0) // c'est comme ca qu'on test qu'un pixel est noir ?
+                if(pixels[j * width + i ] > 0)
                     count[i]++;
             }
         }
@@ -88,19 +85,12 @@ public class ImageOCR {
             specifications.add((double) count[i]);
         }
 
-    }
+        count = new int[height];
 
-    public void setFeatureProfilV(){
-        ImageProcessor ip = img.getProcessor();
-        byte[] pixels = (byte[]) ip.getPixels();
-        int height = ip.getHeight();
-        int width = ip.getWidth();
-
-        int count[] = new int[height];
-
+        //profil horizontal
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                if(pixels[i * width + j] > 0) // c'est comme ca qu'on test qu'un pixel est noir ?
+                if(pixels[i * width + j] > 0)
                     count[i]++;
             }
         }
@@ -109,5 +99,4 @@ public class ImageOCR {
             specifications.add((double) count[i]);
         }
     }
-
 }
