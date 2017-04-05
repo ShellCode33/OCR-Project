@@ -55,4 +55,4 @@ Cela nous permet également de gagner légèrement en précision comme ce screen
 
 * Taux de réussite : 86%
 
-Conclusion : Avec de simples algorithmes de reconnaissance, nous arrivons à un taux de reconnaissance plus que convenable. Nous esperions reconnaitre les 3/4 des images et nous sommes en mesure de reconnaitre 86% ! Les erreurs commises sont dûes à une ambiguïté entre certains caractères comme le 3 et le 9 qui est l'exemple le plus flagrant selon la matrice de confusion.
+Conclusion : Avec de simples algorithmes de reconnaissance, nous arrivons à un taux de reconnaissance plus que convenable. Nous esperions reconnaitre les 3/4 des images et nous sommes en mesure de reconnaitre 86% ! Les erreurs commises sont dûes à une ambiguïté entre certains caractères comme le 3 et le 9 qui est l'exemple le plus flagrant selon la matrice de confusion. On peut également constater que le 1 est le chiffre le moins bien reconnu (50%), probablement dû au fait qu'il s'agit uniquement d'une barre et qu'il est facilement identifiable à un autre chiffre. 
