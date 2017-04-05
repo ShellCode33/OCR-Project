@@ -7,7 +7,7 @@ import ij.process.ImageProcessor;
  */
 public class IsoSpec extends Specification {
 
-    private double surface = 0, perimeter = 0;
+    private double surface = 0, perimeter = 0, result;
 
     public IsoSpec(ImageProcessor processor) {
         super(processor);
@@ -42,11 +42,13 @@ public class IsoSpec extends Specification {
                 }
             }
         }
+
+        result = perimeter / (4 * Math.PI * surface);
     }
 
     @Override
     public double getValue() {
-        return perimeter / (4 * Math.PI * surface);
+        return result;
     }
 
     @Override

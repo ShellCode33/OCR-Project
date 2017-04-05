@@ -24,13 +24,14 @@ public class Utils {
         return dist;
     }
 
-    public static int PPV(ArrayList<Specification> vect, ArrayList<ArrayList<Specification>> tabVect, int except){
+    //returns the index of the lowestDistance
+    public static int lowestDistance(ArrayList<Specification> element, ArrayList<ArrayList<Specification>> references, int except){
         int index = -1;
         double dist = Double.MAX_VALUE;
 
-        for (int i = 0; i < tabVect.size(); i++) {
+        for (int i = 0; i < references.size(); i++) {
             if(i != except) {
-                double tmp_dist = distEucli(vect, tabVect.get(i));
+                double tmp_dist = distEucli(element, references.get(i));
 
                 if (tmp_dist < dist) {
                     index = i;
@@ -40,5 +41,20 @@ public class Utils {
         }
 
         return index;
+    }
+
+    //Returns the average distance
+    public static double averageDistance(ArrayList<Specification> element, ArrayList<ArrayList<Specification>> references) {
+
+        if(references.size() == 0)
+            return Double.MAX_VALUE;
+
+        double dist = 0;
+
+        for(ArrayList<Specification> ref : references) {
+            dist += distEucli(element, ref);
+        }
+
+        return dist / references.size();
     }
 }

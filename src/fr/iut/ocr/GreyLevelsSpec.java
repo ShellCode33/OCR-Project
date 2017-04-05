@@ -7,7 +7,7 @@ import ij.process.ImageProcessor;
  */
 public class GreyLevelsSpec extends Specification {
 
-    private double sum;
+    private double result;
 
     public GreyLevelsSpec(ImageProcessor processor) {
         super(processor);
@@ -19,18 +19,20 @@ public class GreyLevelsSpec extends Specification {
         int height = processor.getHeight();
         int width = processor.getWidth();
 
-        sum = 0;
+        double sum = 0;
 
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 sum += pixels[j * width + i] & 0xff;
             }
         }
+
+        result = sum / (processor.getWidth() * processor.getHeight());
     }
 
     @Override
     public double getValue() {
-        return sum / (processor.getWidth() * processor.getHeight());
+        return result;
     }
 
     @Override

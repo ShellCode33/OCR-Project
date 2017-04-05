@@ -68,18 +68,35 @@ public class PluginOCR implements PlugIn {
         int count = (int) Math.sqrt(references.size());
         int confusion[][] = new int[count][count];
 
-        for(int i = 0; i < references.size(); i++) {
-            ArrayList<ArrayList<Specification>> specsReferences = new ArrayList<>();
 
-            for (ImageOCR imageOCR : references) {
-                specsReferences.add(imageOCR.getSpecifications());
+        ArrayList<ArrayList<Specification>> specsReferences = new ArrayList<>();
+        ArrayList<ArrayList<Specification>> [] specsReferencesSorted = new ArrayList[count]; //zeros are grouped together, same for 2, 3, 4, ...
+
+        for(int j = 0; j < count; j++)
+            specsReferencesSorted[j] = new ArrayList<>(); //Initialise le tableau
+
+        for (ImageOCR imageOCR : references) {
+            specsReferences.add(imageOCR.getSpecifications());
+            specsReferencesSorted[Integer.parseInt(""+imageOCR.getExpectedValue())].add(imageOCR.getSpecifications()); //On rassemble les specifications de references par chiffre
+        }
+
+        for(int i = 0; i < references.size(); i++) {
+            int best_match = -1;
+            double lowest_dist = Double.MAX_VALUE;
+
+            for(int j = 0; j < specsReferencesSorted.length; j++) {
+
+                double tmp_dist = Utils.averageDistance(references.get(i).getSpecifications(), specsReferencesSorted[j]);
+
+                if(lowest_dist > tmp_dist) {
+                    lowest_dist = tmp_dist;
+                    best_match = j;
+                }
             }
 
-            int index_best_match = Utils.PPV(references.get(i).getSpecifications(), specsReferences, i);
-
+            //best_match = Integer.parseInt("" + references.get(Utils.lowestDistance(references.get(i).getSpecifications(), specsReferences, i)).getExpectedValue()); //ancien système de classification
             int expected = Integer.parseInt("" + references.get(i).getExpectedValue());
-            int found = Integer.parseInt("" + references.get(index_best_match).getExpectedValue());
-            confusion[expected][found]++;
+            confusion[expected][best_match]++;
         }
 
         return confusion;
