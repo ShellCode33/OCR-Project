@@ -11,6 +11,9 @@ Dans notre cas, nous allons tenter d'analyser des images de chiffres et d'en ret
 Nous souhaitons obtenir une reconnaissance des caractères optimale, la matrice de confusion est là pour vérifier la précision de nos algorithmes.
 Nous avons une base de référence composée de 100 images (10 images de 0, 10 images de 1, etc...), l'OCR n'étant pas une science exacte, nous espérons être en mesure de reconnaitre au moins 3/4 des chiffres que nous allons tester.
 
+Voici la base de données avec laquelle seront effectuées les comparaisons :
+![bdd](https://github.com/ShellCode33/OCR-Project/raw/master/screenshots/bdd.png)
+
 ## Chaine de traitement
 * Redimensionnement des images en 20x20
     * Nous permet de comparer les mêmes choses entre les images, si celles-ci ne sont pas de la meme taille, les résultats risquent d'être imprécis.
