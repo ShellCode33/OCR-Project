@@ -2,6 +2,23 @@
 
 Projet IUT Informatique de Bordeaux 2016-2017
 
+## Installation
+
+Assurez vous d'avoir java 8 d'installé, si ce n'est pas le cas :
+```
+sudo apt-get install openjdk-8-jre
+```
+
+Assurez vous d'avoir imagej d'installé, si ce n'est pas le cas :
+```
+sudo apt-get install imagej
+```
+
+Vous n'avez plus qu'à lancer le script qui se chargera de packager et de mettre dans le dossier ~/.imagej/plugins/ le plugin :
+```
+./package_and_run.sh
+```
+
 ## Quels sont les enjeux ?
 Le mot OCR (en anglais : optical character recognition) signifie reconnaissance optique de caractères ou reconnaissance de texte, une technologie qui vous permet de convertir différents types de documents tels que les documents papiers scannés, les fichiers PDF ou les photos numériques en fichiers modifiables et interrogeables.
 
