@@ -23,7 +23,7 @@ public class IsoSpec extends Specification {
         for(int i = 0; i < processor.getWidth(); i++) {
             for (int j = 0; j < processor.getHeight(); j++) {
                 if (processor.getPixel(i, j) < threshold_to_be_recognized_as_black) {
-                    //On regarde tous les voisins de ce pixel, et s'il y a un voisin blanc on inrémente perimeter
+                    //On regarde tous les voisins de ce pixel, et s'il y a un voisin blanc on incrémente perimeter
                     int i_begin = i > 0 ? i-1 : 0;
                     int j_begin = j > 0 ? j-1 : 0;
                     int i_end = i < processor.getWidth()-1 ? i+1 : processor.getWidth()-1;

@@ -59,6 +59,7 @@ public class PluginOCR implements PlugIn {
             imageToAnalyse.addSpecification(new ProfilHSpec(imp.getProcessor()));
             imageToAnalyse.addSpecification(new ProfilVSpec(imp.getProcessor()));
             imageToAnalyse.addSpecification(new IsoSpec(imp.getProcessor()));
+            imageToAnalyse.addSpecification(new ZoningSpec(imp.getProcessor()));
         }
     }
 
@@ -97,6 +98,7 @@ public class PluginOCR implements PlugIn {
                 newImg.addSpecification(new ProfilHSpec(newImg.getProcessor()));
                 newImg.addSpecification(new ProfilVSpec(newImg.getProcessor()));
                 newImg.addSpecification(new IsoSpec(newImg.getProcessor()));
+                newImg.addSpecification(new ZoningSpec(newImg.getProcessor()));
                 references.add(newImg);
             }
 
