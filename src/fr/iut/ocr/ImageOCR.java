@@ -31,7 +31,7 @@ public class ImageOCR {
         new ImageConverter(img).convertToGray8();
         processor = img.getProcessor();
         specifications = new ArrayList<>();
-        resize(20, 20);
+        resize(400, 400);
     }
 
     private void resize(int width , int height) {
