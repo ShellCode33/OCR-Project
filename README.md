@@ -73,6 +73,8 @@ Cela nous permet également de gagner légèrement en précision comme ce screen
 
 ![result4](https://github.com/ShellCode33/OCR-Project/raw/master/screenshots/result4.png)
 
+On constate que le 1 est le chiffre le moins bien reconnu (50%), probablement dû au fait qu'il s'agit uniquement d'une barre et qu'il est facilement identifiable à un autre chiffre. 
+
 * Taux de réussite : 86%
 
 Aussi étrange que cela puisse paraitre, en ayant effectué plusieurs tests sur les images, nous avons pu constater qu'augmenter la taille de l'image (passer en 400x400 au lieu du 20x20 initial) permettait d'augmenter le taux de reconnaissance. On constate que c'est essentiellement le 1 qui fait la différence car il est maintenant reconnu à 100% (contre 50% en 20x20). On peut supposer que le taux augmente car en augmentant la taille de l'image, les différences sont plus flagrantes.
@@ -81,4 +83,4 @@ Aussi étrange que cela puisse paraitre, en ayant effectué plusieurs tests sur 
 
 * Taux de réussite : 93%
 
-Conclusion : Avec de simples algorithmes de reconnaissance, nous arrivons à un taux de reconnaissance plus que convenable. Nous esperions reconnaitre les 3/4 des images et nous sommes en mesure de reconnaitre 92% ! Les erreurs commises sont dûes à une ambiguïté entre certains caractères comme le 3 et le 9 qui est l'exemple le plus flagrant selon la matrice de confusion. On peut également constater que le 1 est le chiffre le moins bien reconnu (50%), probablement dû au fait qu'il s'agit uniquement d'une barre et qu'il est facilement identifiable à un autre chiffre. 
+Conclusion : Avec de simples algorithmes de reconnaissance, nous arrivons à un taux de reconnaissance plus que convenable. Nous esperions reconnaitre les 3/4 des images et nous sommes en mesure de reconnaitre 92% ! Les erreurs commises sont dûes à une ambiguïté entre certains caractères comme le 3 et le 9 qui est l'exemple le plus flagrant selon la matrice de confusion.
