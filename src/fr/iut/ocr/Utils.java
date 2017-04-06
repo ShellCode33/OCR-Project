@@ -52,9 +52,10 @@ public class Utils {
         double dist = 0;
 
         for(ArrayList<Specification> ref : references) {
-            dist += distEucli(element, ref);
+            if(ref != element) //enleve la comparaison entre element et lui meme dans references
+                dist += distEucli(element, ref);
         }
 
-        return dist / references.size();
+        return dist / (references.size()-1); //-1 afin d'enlever la comparaison entre element et lui meme dans references
     }
 }
