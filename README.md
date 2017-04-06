@@ -39,13 +39,13 @@ Voici la base de données avec laquelle seront effectuées les comparaisons :
     * On calcule la somme des différentes nuances de gris afin de comparer celle-ci entre les différentes images. Un 1 aura une somme de nuances de gris bien plus faible qu'un 8 ou un 9 par exemple.
 
 * Profil horizontal et vertical
-    * TODO THEO
+    * On calcule le nombre de pixels noirs présent sur chaque ligne, réciproquement chaque colonne afin de comparer avec les différentes images.
 
 * Rapport isopérimétrique
     * On effectue un rapport entre le périmetre (contour) du chiffre et sa surface (de pixels noirs).
 
 * Zoning
-    * TODO THEO
+    * On découpe notre image en 9 blocs de tailles identiques sur lesquels nous allons calculé la moyenne des niveaux de gris comme expliqué précedemment.
 
 ## Résultats
 Matrice de confusion avec pour seule caractéristique les niveaux de gris :
